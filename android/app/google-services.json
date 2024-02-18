@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "224155164215",
+    "project_id": "drivedoctor-1a98c",
+    "storage_bucket": "drivedoctor-1a98c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224155164215:android:51c14da06047e488f729b2",
+        "android_client_info": {
+          "package_name": "com.example.drive_doctor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfGl7iWwpkE6ybclssaA83Vzh0wNQc-_Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
