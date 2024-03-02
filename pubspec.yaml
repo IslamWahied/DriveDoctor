@@ -66,6 +66,11 @@ dependencies:
   intl_phone_field: ^3.2.0
   flutter_native_splash: ^2.3.10
 
+  simple_animations: ^5.0.2
+  animations:
+  flutter_custom_clippers:
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
