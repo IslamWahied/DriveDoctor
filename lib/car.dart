@@ -56,13 +56,8 @@ class CarDetailsScreen extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          const SizedBox(height: 15,),
-                          Text(
-                            "Your current car",
-                            style: TextStyle(
-                                color: const Color.fromRGBO(112, 112, 112, 1),
-                                fontSize: height / 45),
-                          ),
+
+
                           const SizedBox(
                             height: 5.0,
                           ),

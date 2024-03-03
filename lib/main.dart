@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
 
       home:
       const
-     //  HomeScreen(),
-          SplashScreen(),
+       // HomeScreen(),
+           SplashScreen(),
       // SignInScreen(),
      // CarDetailsScreen(),
       //   SplashScreen(),
