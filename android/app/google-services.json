@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "224155164215",
-    "project_id": "drivedoctor-1a98c",
-    "storage_bucket": "drivedoctor-1a98c.appspot.com"
+    "project_number": "362855706630",
+    "project_id": "doctorcar-89952",
+    "storage_bucket": "doctorcar-89952.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:224155164215:android:51c14da06047e488f729b2",
+        "mobilesdk_app_id": "1:362855706630:android:faabe20f7ac273ac07d387",
         "android_client_info": {
           "package_name": "com.example.drive_doctor"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBfGl7iWwpkE6ybclssaA83Vzh0wNQc-_Q"
+          "current_key": "AIzaSyBgGDATB72t-qjRdluCymdOU6eMKgpqAw0"
         }
       ],
       "services": {

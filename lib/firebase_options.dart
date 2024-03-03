@@ -44,38 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCiStbc90yt6E3u6To1VSDDKoCp420QPhY',
-    appId: '1:224155164215:web:6dded10498c4f2b1f729b2',
-    messagingSenderId: '224155164215',
-    projectId: 'drivedoctor-1a98c',
-    authDomain: 'drivedoctor-1a98c.firebaseapp.com',
-    storageBucket: 'drivedoctor-1a98c.appspot.com',
-    measurementId: 'G-TNE1DZLQ41',
+    apiKey: 'AIzaSyAOV-FgHMwQOuK-G5U_HiDaiD6yXB_cTgc',
+    appId: '1:362855706630:web:68d100d6cbb5555d07d387',
+    messagingSenderId: '362855706630',
+    projectId: 'doctorcar-89952',
+    authDomain: 'doctorcar-89952.firebaseapp.com',
+    storageBucket: 'doctorcar-89952.appspot.com',
+    measurementId: 'G-EEQ2SHMYNK',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBfGl7iWwpkE6ybclssaA83Vzh0wNQc-_Q',
-    appId: '1:224155164215:android:51c14da06047e488f729b2',
-    messagingSenderId: '224155164215',
-    projectId: 'drivedoctor-1a98c',
-    storageBucket: 'drivedoctor-1a98c.appspot.com',
+    apiKey: 'AIzaSyBgGDATB72t-qjRdluCymdOU6eMKgpqAw0',
+    appId: '1:362855706630:android:faabe20f7ac273ac07d387',
+    messagingSenderId: '362855706630',
+    projectId: 'doctorcar-89952',
+    storageBucket: 'doctorcar-89952.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB-o97qNrbZH8e2pxbuJFtr3u8wTsT4QXI',
-    appId: '1:224155164215:ios:222bd8821535e443f729b2',
-    messagingSenderId: '224155164215',
-    projectId: 'drivedoctor-1a98c',
-    storageBucket: 'drivedoctor-1a98c.appspot.com',
+    apiKey: 'AIzaSyCy9nm2lGBpayz1HHDnP8r69Pg384DGlOA',
+    appId: '1:362855706630:ios:e41e618416e9935007d387',
+    messagingSenderId: '362855706630',
+    projectId: 'doctorcar-89952',
+    storageBucket: 'doctorcar-89952.appspot.com',
     iosBundleId: 'com.example.driveDoctor',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyB-o97qNrbZH8e2pxbuJFtr3u8wTsT4QXI',
-    appId: '1:224155164215:ios:fad6912ed8742ec7f729b2',
-    messagingSenderId: '224155164215',
-    projectId: 'drivedoctor-1a98c',
-    storageBucket: 'drivedoctor-1a98c.appspot.com',
+    apiKey: 'AIzaSyCy9nm2lGBpayz1HHDnP8r69Pg384DGlOA',
+    appId: '1:362855706630:ios:b47d2a856936fd6d07d387',
+    messagingSenderId: '362855706630',
+    projectId: 'doctorcar-89952',
+    storageBucket: 'doctorcar-89952.appspot.com',
     iosBundleId: 'com.example.driveDoctor.RunnerTests',
   );
 }
