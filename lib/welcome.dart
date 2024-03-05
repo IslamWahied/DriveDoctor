@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:drive_doctor/sign_in.dart';
-import 'package:drive_doctor/sign_up.dart';
+import 'package:drive_doctor/features/login/presentation/sign_in/sign_in.dart';
+import 'package:drive_doctor/features/login/presentation/sign_up/sign_up.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});

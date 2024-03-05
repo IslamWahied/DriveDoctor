@@ -1,6 +1,6 @@
-import 'package:drive_doctor/sign_up.dart';
+import 'package:drive_doctor/features/login/presentation/sign_up/sign_up.dart';
 import 'package:flutter/material.dart';
-import 'home.dart';
+import '../../../../home.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
