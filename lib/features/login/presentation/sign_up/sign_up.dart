@@ -1,16 +1,30 @@
+import 'package:drive_doctor/features/login/presentation/cubit/loginCubit.dart';
+import 'package:drive_doctor/features/login/presentation/cubit/loginState.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 
 class SignUp extends StatelessWidget {
-  const SignUp({super.key});
+final String userImageUrl;
+final String userFullName;
+final String email;
+
+
+
+
+    const SignUp({super.key,required this.userFullName,required this.email,required this.userImageUrl});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
 
+
+
+    return Scaffold(
+   
+      backgroundColor: const Color(0xFF212121),
       appBar: AppBar(
         backgroundColor: const Color(0xFF212121),
 
@@ -24,229 +38,247 @@ class SignUp extends StatelessWidget {
       ),
 
 
-      body:Container(
+      body:BlocConsumer<LoginCubit,LoginState>(
+        builder: (context,state){
+          var loginCubit = LoginCubit.get(context);
+          return  SingleChildScrollView(
+            child: Form(
+              key: loginCubit.signUpFormKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
 
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          color: Color(0xFF212121),
+                  const Center(
+                    child: Text('Sign up',style:
+                    TextStyle(
+                        color: Color(0xFF909093),
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold
+                    ),
+                    ),
+                  ),
+                  SizedBox(height: 30.h,),
 
+                  CircleAvatar(
+                    radius: 80,
+                    backgroundImage: userImageUrl != null ? NetworkImage(userImageUrl) : null,
+                    child: userImageUrl == null ? const Icon(Icons.person, size: 80) : null,
+                  ),
+                  SizedBox(height: 30.h,),
 
-        ),
-
-        child: Column(
-
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-
-
-            Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-
-                children:<Widget>[
-
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 30),
-
-
-                      const Text('Sign up to see photos\nand videos from your\nfriends.',style:
-                      TextStyle(
-                          color: Color(0xFF909093),
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold
-                      ),
-                      ),
-                      // ),
-
-                      const SizedBox(height: 30),
+                  Padding(
+                    padding:   EdgeInsets.symmetric(horizontal: 25.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: <Widget>[
 
 
-                      SizedBox(
-                        width: 320,
+                        Container(
 
+                          decoration: const BoxDecoration(
+                              border: Border(bottom: BorderSide(color: Colors.grey))
+                          ),
+                          child:   TextFormField(
+                            controller: loginCubit.txtEmailControl,
+                            style: const TextStyle(
+                              color: Colors.white,
 
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: <Widget>[
-
-
-                            Container(
-
-                              decoration: const BoxDecoration(
-                                  border: Border(bottom: BorderSide(color: Colors.grey))
-                              ),
-                              child: const TextField(
-                                style: TextStyle(
-                                  color: Colors.white,
-
-                                ),
-
-                                decoration: InputDecoration(
-                                    fillColor: Colors.white,
-                                    hintText: "Mobile Number or Email",
-                                    hintStyle: TextStyle(color: Colors.grey,fontSize: 14),
-                                    border: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.blueAccent
-                                        )
-                                    )
-                                ),
-                              ),
                             ),
-
-                            const SizedBox(height: 10,),
-
-
-
-                            Container(
-
-                              decoration: const BoxDecoration(
-                                  border: Border(bottom: BorderSide(color: Colors.grey))
-                              ),
-                              child: const TextField(
-                                style: TextStyle(
-                                  color: Colors.white,
-
-                                ),
-                                decoration: InputDecoration(
-                                    fillColor: Colors.white,
-                                    hintText: "UserName",
-                                    hintStyle: TextStyle(color: Colors.grey,fontSize: 14),
-                                    border: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.blueAccent
-                                        )
-                                    )
-                                ),
-                              ),
-                            ),
-
-                            const SizedBox(height: 10,),
-
-
-                            Container(
-
-                              decoration: const BoxDecoration(
-                                  border: Border(bottom: BorderSide(color: Colors.grey))
-                              ),
-
-                              child: const TextField(
-                                obscureText: true,
-                                style: TextStyle(
-                                  color: Colors.white,
-
-                                ),
-                                decoration: InputDecoration(
-                                    hintText: "Password",
-                                    hintStyle: TextStyle(color: Colors.grey,fontSize: 14),
-                                    border: UnderlineInputBorder(
-                                        borderSide: BorderSide(color: Colors.blueAccent)
+                            decoration: const InputDecoration(
+                                fillColor: Colors.white,
+                                hintText: "UserName / Email",
+                                hintStyle: TextStyle(color: Colors.grey,fontSize: 14),
+                                border: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.blueAccent
                                     )
                                 ),
 
-                              ),
                             ),
-
-                            const SizedBox(height: 60,),
-
-                            Container(
-                                height: 50,
-                                width: 320,
-
-                                // margin: EdgeInsets.symmetric(horizontal: 50),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  gradient: LinearGradient(
-                                      colors: [
-                                        Color(0xFFffb421),
-                                        Color(0xFFff7521)
-                                      ]
-                                  ),
-                                ),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    // Navigator.push(context,MaterialPageRoute(builder: (context) => SignUp()),);
-                                  },
-                                  child: Center(
-                                    child: Text("Sign Up", style: TextStyle(fontSize: 18,color: Colors.white, fontWeight: FontWeight.bold),),
-                                  ),
-                                )
-                            ),
-
-
-
-
-                          ],
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter a username/email';
+                              }
+                              // You can add more validation logic here if needed
+                              return null;
+                            },
+                          ),
                         ),
 
-                      ),
+                        SizedBox(height: 20.h,),
 
+                        Container(
 
-                      const SizedBox(height: 20),
-
-
-                      const Text('Or sign up with another\naccount.',style:
-                      TextStyle(
-                          color: Color(0xFF909093),
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold
-                      ),
-                      ),
-
-
-                      const SizedBox(height: 20,),
-
-
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-
-                          Container(
-                            child: SvgPicture.asset(
-                              "assets/icons/icons-facebook.svg",
-                              height: 35,
-                              width: 35,
-                            ),
+                          decoration: const BoxDecoration(
+                              border: Border(bottom: BorderSide(color: Colors.grey))
                           ),
-                          SizedBox(width: 50,),
-                          Container(
-                            child: SvgPicture.asset(
-                              "assets/icons/icons-twitter.svg",
-                              height: 35,
-                              width: 35,
+                          child:   TextFormField(
+
+                            controller: loginCubit.txtFullNameControl,
+                            style: const TextStyle(
+                              color: Colors.white,
+
                             ),
-                          ),
-                          SizedBox(width: 50,),
-                          Container(
-                            child: SvgPicture.asset(
-                              "assets/icons/icons-google.svg",
-                              height: 35,
-                              width: 35,
+                            decoration: const InputDecoration(
+                                fillColor: Colors.white,
+                                hintText: "Full Name",
+                                hintStyle: TextStyle(color: Colors.grey,fontSize: 14),
+                                border: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.blueAccent
+                                    )
+                                )
                             ),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter a username/email';
+                              }
+                              // You can add more validation logic here if needed
+                              return null;
+                            },
                           ),
-                          SizedBox(width: 50,),
+                        ),
 
-                        ],
-                      ),
+                        SizedBox(height: 20.h,),
+
+ //Password
+                        Container(
+
+                          decoration: const BoxDecoration(
+                              border: Border(bottom: BorderSide(color: Colors.grey))
+                          ),
+
+                          child:TextFormField(
+                            controller: loginCubit.txtPasswordControl,
+                            obscureText: loginCubit.isSignUpPasswordObscureText,
+                            style: const TextStyle(
+                              color: Colors.white,
+
+                            ),
+                            decoration:   InputDecoration(
+                                suffixIcon: IconButton(
+                                  icon: Icon(loginCubit.isSignUpPasswordObscureText
+                                      ? Icons.visibility_off_outlined
+                                      : Icons.visibility_outlined),
+                                  onPressed: () {
+                                    loginCubit
+                                        .changShowPasswordFlag();
+                                  },
+                                ),
+                                hintText: "Password",
+                                hintStyle: const TextStyle(color: Colors.grey,fontSize: 14),
+                                border: const UnderlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.blueAccent)
+                                )
+                            ),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter a username/email';
+                              }
+                              // You can add more validation logic here if needed
+                              return null;
+                            },
+
+
+                          ),
+                        ),
+
+                        SizedBox(height: 20.h,),
+
+                      // Confirm Password
+                        Container(
+
+                          decoration: const BoxDecoration(
+                              border: Border(bottom: BorderSide(color: Colors.grey))
+                          ),
+
+                          child:TextFormField(
+                            controller: loginCubit.txtConfirmPasswordControl,
+                            obscureText: loginCubit.isSignUpConfirmPasswordObscureText,
+                            style: const TextStyle(
+                              color: Colors.white,
+
+                            ),
+                            decoration:   InputDecoration(
+                                suffixIcon: IconButton(
+                                  icon: Icon(loginCubit.isSignUpConfirmPasswordObscureText
+                                      ? Icons.visibility_off_outlined
+                                      : Icons.visibility_outlined),
+                                  onPressed: () {
+                                    loginCubit
+                                        .changShowConfirmPasswordFlag();
+                                  },
+                                ),
+                                hintText: "Confirm Password",
+                                hintStyle: const TextStyle(color: Colors.grey,fontSize: 14),
+                                border: const UnderlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.blueAccent)
+                                )
+                            ),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter a username/email';
+                              }
+                              // You can add more validation logic here if needed
+                              return null;
+                            },
+                          ),
+                        ),
 
 
 
-                      const SizedBox(height: 20,),
 
 
 
-
-                    ],
+                      ],
+                    ),
                   ),
+                  SizedBox(height: 100.h,),
+                  Container(
+                      height: 50.h,
+                      width: 320.w,
 
-                ]
+                      // margin: EdgeInsets.symmetric(horizontal: 50),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        gradient: const LinearGradient(
+                            colors: [
+                              Color(0xFFffb421),
+                              Color(0xFFff7521)
+                            ]
+                        ),
+                      ),
+                      child: GestureDetector(
+                        onTap: () async {
+                          if (loginCubit.signUpFormKey.currentState!.validate()) {
+                            // Form is valid, proceed with sign-up logic
+                            await FirebaseAuth.instance.signInAnonymously().then((value) {
+                              // Handle successful sign-up
+                            });
+                          }
+
+
+                          await  FirebaseAuth.instance.signInAnonymously().then((value) {
+
+                          });
+                          // Navigator.push(context,MaterialPageRoute(builder: (context) => SignUp()),);
+                        },
+                        child: const Center(
+                          child: Text("Sign Up", style: TextStyle(fontSize: 18,color: Colors.white, fontWeight: FontWeight.bold),),
+                        ),
+                      )
+                  ),
+                  SizedBox(height: 10.h,),
+
+                ],
+              ),
             ),
+          );
+        },
+        listener: (context,state){
 
-
-
-          ],
-        ),
+        },
       ),
     );
   }

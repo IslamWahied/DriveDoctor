@@ -70,6 +70,10 @@ dependencies:
   animations:
   flutter_custom_clippers:
 
+  flutter_screenutil: ^5.9.0
+
+  flutter_localization: ^0.2.0
+
 
 dev_dependencies:
   flutter_test:

@@ -67,6 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '362855706630',
     projectId: 'doctorcar-89952',
     storageBucket: 'doctorcar-89952.appspot.com',
+    androidClientId: '362855706630-2kr56ot4grpn9rs9a8kr80flf169vtdc.apps.googleusercontent.com',
+    iosClientId: '362855706630-mqu1nbd8ngf9qm4k2ehl51bb37od3eh1.apps.googleusercontent.com',
     iosBundleId: 'com.example.driveDoctor',
   );
 
@@ -76,6 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '362855706630',
     projectId: 'doctorcar-89952',
     storageBucket: 'doctorcar-89952.appspot.com',
+    androidClientId: '362855706630-2kr56ot4grpn9rs9a8kr80flf169vtdc.apps.googleusercontent.com',
+    iosClientId: '362855706630-nkalhmjiitdtbm64sdpc8hdpdsmh2r1h.apps.googleusercontent.com',
     iosBundleId: 'com.example.driveDoctor.RunnerTests',
   );
 }

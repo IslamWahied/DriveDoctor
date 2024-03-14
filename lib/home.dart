@@ -1,11 +1,12 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'car.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key});
+  const HomeScreen({super.key });
 
   @override
   Widget build(BuildContext context) {
@@ -21,64 +22,10 @@ class HomeScreen extends StatelessWidget {
             context: context,
             builder: (BuildContext context) => AddCarBottomSheet(),
           );
-          // showModalBottomSheet(
-          //   context: context,
-          //   builder: (BuildContext context) {
-          //     return Stack(
-          //       alignment: Alignment.topRight,
-          //       children: [
-          //
-          //         Column(
-          //           children: [
-          //             const SizedBox(
-          //               height: 200, // Set your desired height
-          //               child: Center(
-          //                 child: Text('Your Bottom Sheet Content'),
-          //               ),
-          //             ),
-          //             const Spacer(),
-          //             ElevatedButton(
-          //
-          //               onPressed: () {
-          //                 Navigator.pop(context);
-          //               },
-          //               child: Padding(
-          //                 padding: const EdgeInsets.all(8.0),
-          //                 child: Text('Save'),
-          //               ),
-          //             ),
-          //             SizedBox(height: 20,)
-          //           ],
-          //         ),
-          //         Padding(
-          //           padding: const EdgeInsets.all(8.0),
-          //           child: GestureDetector(
-          //             onTap: (){
-          //               Navigator.pop(context);
-          //             },
-          //             child: CircleAvatar(
-          //               radius: 15,
-          //               backgroundColor: Colors.red,
-          //               child: Icon(Icons.close,color: Colors.white),
-          //             ),
-          //           ),
-          //         )
-          //       ],
-          //     );
-          //   },
-          // );
+
         },
         child: Image.asset("assets/image/1.png"),
       ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   onTap: (index) {},
-      //   currentIndex: 0,
-      //   items: const [
-      //     BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
-      //     BottomNavigationBarItem(label: "Mail", icon: Icon(Icons.message)),
-      //     BottomNavigationBarItem(label: "Profile", icon: Icon(Icons.person)),
-      //   ],
-      // ),
       body: Container(
         padding: const EdgeInsets.all(25.0),
         height: height,
@@ -95,18 +42,18 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-            
-          
-              const Row(
+
+
+                Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 20.0,
                     backgroundImage: NetworkImage('https://via.placeholder.com/150'),
                     child: Icon(Icons.person),
                   ),
-                  SizedBox(width: 10.0),
-                  Row(
+                  SizedBox(width: 10.w),
+                    const Row(
                     children: [
                       Text(
                         'Welcome , ',
@@ -126,18 +73,18 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Spacer(),
-                  Icon(Icons.notifications,color: Colors.white,)
+                  const Spacer(),
+                  const Icon(Icons.notifications,color: Colors.white,)
                 ],
               ),
-              const SizedBox(height: 35),
+                SizedBox(height: 35.h),
               const Text(
                 "Your current cars",
                 style: TextStyle(
                     color: Color.fromRGBO(112, 112, 112, 1),
                     fontSize: 20),
               ),
-              const SizedBox(height: 20),
+                SizedBox(height: 20.h),
               Expanded(
                 child: GridView.count(
                   crossAxisCount: 2,
@@ -203,13 +150,13 @@ class MyCustomWidget extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height:   5),
-                  const Center(
+                    Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const [
 
                         Text(
-                          "Kil 1355",
+                          "km",
                           style: TextStyle(color: Colors.white),
                         ),
 
@@ -295,12 +242,13 @@ class _AddCarBottomSheetState extends State<AddCarBottomSheet> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 5,top: 5),
+                Padding(
+                padding: const EdgeInsets.only(left: 5,top: 5),
                 child: Text(
                   "Add Car",
                   style: TextStyle(
                     fontSize: 20,
+                    color: Colors.grey[400],
                     fontWeight: FontWeight.bold,
                   ),
                 ),
