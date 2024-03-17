@@ -1,18 +1,20 @@
 class CarModel {
-  String carName;
+
   String carModel;
   String carColor;
   int carBrandId;
+  String carBrandName;
   String licenseFromDate;
   String licenseToDate;
   int carKilometers;
 
 
   CarModel({
-    required this.carName,
+
     required this.carColor,
     required this.carModel,
     required this.carBrandId,
+    required this.carBrandName,
     required this.licenseFromDate,
     required this.licenseToDate,
     required this.carKilometers,
@@ -20,10 +22,11 @@ class CarModel {
 
   factory CarModel.fromJson(Map<String, dynamic> json) {
     return CarModel(
-      carName: json['carName'],
+
       carColor: json['carColor'],
       carModel: json['carModel'],
       carBrandId: json['carBrandId'],
+      carBrandName: json['carBrandName'],
       licenseFromDate: json['licenseFromDate'],
       licenseToDate: json['licenseToDate'],
       carKilometers: json['carKilometers'],
@@ -32,10 +35,11 @@ class CarModel {
 
   Map<String, dynamic> toJson() {
     return {
-      'carName': carName,
+
       'carColor': carColor,
       'carModel': carModel,
       'carBrandId': carBrandId,
+      'carBrandName': carBrandName,
       'licenseFromDate': licenseFromDate,
       'licenseToDate': licenseToDate,
       'carKilometers': carKilometers,

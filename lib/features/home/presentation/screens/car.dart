@@ -1,8 +1,6 @@
+import 'package:drive_doctor/core/services/Global.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
-import 'home.dart';
-
 
 class CarDetailsScreen extends StatelessWidget {
   int index;
@@ -71,7 +69,7 @@ class CarDetailsScreen extends StatelessWidget {
                       Hero(
                         tag: index.toString(),
                         child: SvgPicture.asset(
-                          listCarBrands[index],
+                         Global.listBrandModel[index].brandImageUrl,
                           width: 50, // Adjust the width as needed
                           height: 50, // Adjust the height as needed
                         ),

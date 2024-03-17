@@ -2,18 +2,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class CachHelper {
+class CashHelper {
   static SharedPreferences? sharedPreferences  ;
-  static const wightDivice = "wightDivice";
-  static const hightDivice = "hightDivice";
-  static const Language = "Language";
+
+  static const language = "Language";
 
 
   static init() async {
     sharedPreferences = await SharedPreferences.getInstance();
   }
 
-  static Future<bool?> SetData({
+  static Future<bool?> setData({
      required String key,
      required dynamic value,
   }) async {
@@ -34,7 +33,7 @@ class CachHelper {
 
   }
 
-  static dynamic GetData({required String key}) {
+  static dynamic getData({required String key}) {
     return sharedPreferences?.get(key);
   }
 }

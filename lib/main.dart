@@ -1,11 +1,18 @@
-import 'package:drive_doctor/splashScreen.dart';
-import 'package:drive_doctor/welcome.dart';
+import 'package:drive_doctor/Model/user.dart';
+import 'package:drive_doctor/core/services/StringManager.dart';
+import 'package:drive_doctor/core/services/shared_helper.dart';
+import 'package:drive_doctor/features/home/presentation/screens/home.dart';
+import 'package:drive_doctor/features/login/presentation/screens/wellcom/welcome.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'core/services/Global.dart';
+import 'features/home/presentation/cubit/homeCubit.dart';
 import 'features/login/presentation/cubit/loginCubit.dart';
-import 'features/login/presentation/sign_in/sign_in.dart';
+import 'features/login/presentation/screens/sign_in/sign_in.dart';
 import 'firebase_options.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,10 +20,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  FirebaseMessaging.instance;
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  CashHelper.init();
 
   // fire base
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  FirebaseMessaging.instance;
   FirebaseMessaging.onMessage.listen((event) {
     // print('onMessage');
   });
@@ -25,16 +35,34 @@ Future<void> main() async {
     // Navigator.pushNamed(context, '/message',
     //     arguments: MessageArguments(message, true));
   });
+  Global.fireBaseToken = await FirebaseMessaging.instance.getToken() ?? '';
 
-   String fireBaseToken = await FirebaseMessaging.instance.getToken() ?? '';
+  // check is Show Welcome Screen Login
+  bool isShowWelcomeScreen =
+      CashHelper.getData(key: StringManager.isShowWelcomeScreen)??false;
 
-   print(fireBaseToken);
+  print("isShowWelcomeScreen");
+  print(isShowWelcomeScreen);
 
-  runApp(const MyApp());
+  // check is User Login
+  bool isUserLogin = CashHelper.getData(key: StringManager.isUserLogin)??false;
+  if(isUserLogin){
+    Global.userModel = UserModel.getUserModel()!;
+  }
+
+// whenever your initialization is completed, remove the splash screen:
+ await Future.delayed(const Duration(seconds: 2), () {
+    FlutterNativeSplash.remove();
+  });
+
+
+  runApp(MyApp(isShowWelcomeScreen: isShowWelcomeScreen,isUserLogin: isUserLogin));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+ final bool isShowWelcomeScreen;
+ final bool isUserLogin;
+  const MyApp({Key? key, required this.isShowWelcomeScreen, required this.isUserLogin}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +77,7 @@ class MyApp extends StatelessWidget {
           providers: [
 
             BlocProvider(create: (context)=>LoginCubit()),
+            BlocProvider(create: (context)=>HomeCubit()..getBrandsModels()),
 
           ],
           child :MaterialApp(
@@ -66,12 +95,12 @@ class MyApp extends StatelessWidget {
       },
 
       child:
-        //  const WelcomePage(),
-       // const SplashScreen(),
-      const  SignInScreen(),
-      // CarDetailsScreen(),
-      //   SplashScreen(),
-      // const HomePage(title: 'First Method'),
+
+     !isShowWelcomeScreen? const WelcomePage() :
+
+     !isUserLogin ? const SignInScreen() :
+
+      const HomeScreen(),
 
 
 
