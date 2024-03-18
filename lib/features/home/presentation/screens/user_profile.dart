@@ -1,9 +1,10 @@
-import 'package:drive_doctor/core/app_widgets/app_bar.dart';
+
+import 'package:animations/animations.dart';
 import 'package:drive_doctor/core/app_widgets/button.dart';
 import 'package:drive_doctor/core/services/Global.dart';
 import 'package:drive_doctor/features/home/presentation/cubit/homeCubit.dart';
 import 'package:drive_doctor/features/home/presentation/cubit/homeState.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -97,6 +98,50 @@ title:const Text( "Profile",style: TextStyle(color: Colors.white,fontSize: 18),)
         ),
       ),
 
+    );
+  }
+}
+
+
+class UserProfile extends StatefulWidget {
+  const UserProfile({super.key});
+
+  @override
+  _UserProfileWidgetState createState() => _UserProfileWidgetState();
+}
+
+class _UserProfileWidgetState extends State<UserProfile> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Center(
+        child: OpenContainer(
+          closedBuilder: (_, openContainer) {
+            return GestureDetector(
+              onTap: openContainer,
+              child: CircleAvatar(
+                radius: 25,
+                backgroundImage: Global.userModel.photoUrl != ""
+                    ? NetworkImage(Global.userModel.photoUrl!)
+                    : null,
+                child: Global.userModel.photoUrl == ""
+                    ? const Icon(Icons.person, size: 80)
+                    : null,
+              ),
+            );
+          },
+          openColor: Colors.white,
+          closedElevation: 50.0,
+          closedShape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
+          ),
+          closedColor: Colors.transparent,
+          openBuilder: (_, closeContainer) {
+            return const UserProfileScreen();
+          },
+        ),
+      ),
     );
   }
 }
