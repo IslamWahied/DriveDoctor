@@ -49,7 +49,7 @@ class UserModel {
   static Future<void> saveUserModel({required UserModel userModel}) async {
     final userMap = userModel.toMap();
     final userJson = json.encode(userMap);
-    print(userJson);
+
     await CashHelper.setData(key: StringManager.userModel,value:  userJson);
   }
 

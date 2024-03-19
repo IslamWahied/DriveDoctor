@@ -68,7 +68,7 @@ title:const Text( "Profile",style: TextStyle(color: Colors.white,fontSize: 18),)
                           style: const TextStyle(color: Colors.white,fontSize: 18)),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Column(
                     children: [
                       AppButton(
@@ -126,7 +126,7 @@ class _UserProfileWidgetState extends State<UserProfile> {
                     ? NetworkImage(Global.userModel.photoUrl!)
                     : null,
                 child: Global.userModel.photoUrl == ""
-                    ? const Icon(Icons.person, size: 80)
+                    ? const Icon(Icons.person, size: 30)
                     : null,
               ),
             );

@@ -7,8 +7,9 @@ import 'package:drive_doctor/features/home/presentation/screens/user_profile.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 
-bool _isFirstBuild = true;
+bool isFirstBuild = true;
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -18,9 +19,9 @@ class HomeScreen extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     // Run your function only when the screen is first initialized
-    if (_isFirstBuild) {
+    if (isFirstBuild) {
       HomeCubit.get(context).getUserCarModels();
-      _isFirstBuild = false;
+      isFirstBuild = false;
     }
     return BlocConsumer<HomeCubit,HomeState>(
       builder: (context,state){

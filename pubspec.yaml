@@ -78,6 +78,7 @@ dependencies:
   launcher_name: ^1.0.2
 
   dropdown_search: ^5.0.6
+  pointer_interceptor: ^0.10.1
 
 dev_dependencies:
   flutter_test:

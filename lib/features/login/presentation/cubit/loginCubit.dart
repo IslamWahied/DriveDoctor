@@ -4,6 +4,7 @@ import 'package:drive_doctor/core/network/auth/google_signIn_service.dart';
 import 'package:drive_doctor/core/services/Global.dart';
 import 'package:drive_doctor/core/services/StringManager.dart';
 import 'package:drive_doctor/core/services/shared_helper.dart';
+import 'package:drive_doctor/features/home/presentation/cubit/homeCubit.dart';
 import 'package:drive_doctor/features/login/presentation/cubit/loginState.dart';
 import 'package:drive_doctor/features/login/presentation/screens/sign_in/sign_in.dart';
 import 'package:drive_doctor/features/login/presentation/screens/sign_up/sign_up.dart';
@@ -79,18 +80,27 @@ class LoginCubit extends Cubit<LoginState> {
       );
 
       await   UserModel.saveUserModel(userModel:userModel);
+      Global.userModel =   UserModel.getUserModel()??UserModel();
       await    CashHelper.setData(key: StringManager.isUserLogin, value: true);
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomeScreen(
-
+      HomeCubit.get(context).getUserCarModels();
+      isFirstBuild = false;
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeScreen(),
           ),
-        ) );
+              (Route<dynamic> route) => false);
 
-    } else {
-      print("Empty");
+    }
+    else {
+
+      ScaffoldMessenger.of(context).showSnackBar(
+
+        const SnackBar(
+          backgroundColor: Colors.red,
+          content: Text('Username or password incorrect. Please try again.'),
+        ),
+      );
       return; // User not found
     }
 
@@ -106,20 +116,22 @@ class LoginCubit extends Cubit<LoginState> {
         .limit(1)
         .get();
     if (result.docs.isNotEmpty) {
-      final userData = result.docs.first.data();
 
-      var userModel =  UserModel(
-        uid: userData['uid'],
-        photoUrl: userData['photoUrl'],
-        userEmail: userData['userEmail'],
-        userPassword: userData['userPassword'],
-        userFullName: userData['userFullName'],
-        fireBaseToken: userData['fireBaseToken'],
-      );
-      print(userModel.toMap());
-      Global.userModel = userModel;
-      await   UserModel.saveUserModel(userModel:userModel);
-      await    CashHelper.setData(key: StringManager.isUserLogin, value: true);
+        final userData = result.docs.first.data();
+        var userModel =  UserModel(
+          uid: userData['uid'],
+          photoUrl: userData['photoUrl'],
+          userEmail: userData['userEmail'],
+          userPassword: userData['userPassword'],
+          userFullName: userData['userFullName'],
+          fireBaseToken: userData['fireBaseToken'],
+        );
+        await   UserModel.saveUserModel(userModel:userModel);
+        Global.userModel =   UserModel.getUserModel()??UserModel();
+        await    CashHelper.setData(key: StringManager.isUserLogin, value: true);
+
+
+
 
       return true;
     }else{
@@ -140,8 +152,10 @@ class LoginCubit extends Cubit<LoginState> {
   bool isSignUpConfirmPasswordObscureText = true;
 
   bool isLoginWithEmail = true;
+
   Future<void> signUpByEmail({required BuildContext context, required bool isLoginScreen})
   async {
+
     GoogleSignInService googleSignInService = GoogleSignInService();
     bool isGoogleSignedIn = googleSignInService.isGoogleSignedIn();
 
@@ -155,14 +169,18 @@ class LoginCubit extends Cubit<LoginState> {
         checkIsUserHaveAccount(googleSignInAccount:result).then((value) async {
           if(value){
 
-            Navigator.push(
+
+          await  HomeCubit.get(context).getUserCarModels();
+            isFirstBuild = false;
+
+          Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                builder: (context) => HomeScreen(
-
-                ),
+                builder: (context) => const HomeScreen(),
               ),
-            );
+                  (Route<dynamic> route) => false);
+
+
           }
           else{
             restSignUpControls();
@@ -171,6 +189,7 @@ class LoginCubit extends Cubit<LoginState> {
             userImageUrl = result.photoUrl ?? '';
 
             if (isLoginScreen) {
+
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -214,11 +233,34 @@ class LoginCubit extends Cubit<LoginState> {
 
     // emit(SignUpByEmailStateSuccessfully());
   }
-
+  User? user ;
   Future<void> createUserForFireStore({required BuildContext context}) async {
 
+    // check if user email
+    final QuerySnapshot<Map<String, dynamic>> result = await FirebaseFirestore.instance
+        .collection('users')
+        .where('userEmail', isEqualTo:txtEmailControl.text)
+        .limit(1)
+        .get();
+    if (result.docs.isNotEmpty) {
+
+      ScaffoldMessenger.of(context).showSnackBar(
+
+        const SnackBar(
+          backgroundColor: Colors.red,
+          content: Text('The chosen username or email is already taken.'
+              'q Please choose a different one.'),
+        ),
+      );
+    }else{
+      // Sign out current user if any
+      await FirebaseAuth.instance.signOut();
       UserCredential userCredential = await FirebaseAuth.instance.signInAnonymously();
-      User? user = userCredential.user;
+      user =   userCredential.user;
+
+      // You can access the user's ID using userCredential.user.uid
+      print("Signed in anonymously with UID: ${userCredential.user!.uid}");
+
 
       if (user != null) {
 
@@ -227,26 +269,25 @@ class LoginCubit extends Cubit<LoginState> {
           UserModel userModel = UserModel(
             fireBaseToken: Global.fireBaseToken,
             userEmail:txtEmailControl.text ,
-            uid: user.uid,
+            uid: user!.uid,
             photoUrl: userImageUrl,
             userFullName:txtFullNameControl.text ,
             userPassword:txtPasswordControl.text ,
           );
 
           await FirebaseFirestore.instance.collection('users')
-              .doc(user.uid).set(userModel.toMap()).then((value) async {
-                Global.userModel = userModel;
-              await   UserModel.saveUserModel(userModel:userModel );
-                await    CashHelper.setData(key: StringManager.isUserLogin, value: true);
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomeScreen(
-
+              .doc(user!.uid).set(userModel.toMap()).then((value) async {
+            Global.userModel = userModel;
+            await   UserModel.saveUserModel(userModel:userModel );
+            await    CashHelper.setData(key: StringManager.isUserLogin, value: true);
+            HomeCubit.get(context).getUserCarModels();
+            isFirstBuild = false;
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HomeScreen(),
                 ),
-              ),
-            );
+                    (Route<dynamic> route) => false);
           });
 
 
@@ -258,6 +299,10 @@ class LoginCubit extends Cubit<LoginState> {
         }
 
       }
+    }
+
+
+
 
   }
 

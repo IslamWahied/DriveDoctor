@@ -17,67 +17,69 @@ class WelcomePage extends StatelessWidget {
         builder: (context, state) {
           var loginCubit = LoginCubit.get(context);
           return SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                // Car Image
-                SizedBox(
-                  width: 200.w,
-                  height: 300.0.h,
-                  child: Image.asset(
-                    "assets/image/6.png",
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  // Car Image
+                  SizedBox(
+                    width: 200.w,
+                    height: 300.0.h,
+                    child: Image.asset(
+                      "assets/image/6.png",
+                    ),
                   ),
-                ),
 
-                // Text
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  // Text
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Join a community \nof creators',
+                          style: TextStyle(
+                              color: Color(0xFFcccccf),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30),
+                        ),
+                        SizedBox(height: 20.h),
+                        const Text(
+                          'A simple, fun, and creative way to \ntracking and managing your \ncar\'s maintenance',
+                          style: TextStyle(
+                              color: Color(0xFF777779),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 70.h,
+                  ),
+
+                  // buttons
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text(
-                        'Join a community \nof creators',
-                        style: TextStyle(
-                            color: Color(0xFFcccccf),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30),
+                      AppButton(
+                          text: "Sign Up",
+                          onTap:()=> loginCubit.goToSignUp(context: context),
+                          firstLinearGradientColor: const Color(0xFF464646),
+                          secondLinearGradientColor: const Color(0xFF464646)),
+                      SizedBox(
+                        height: 30.h,
                       ),
-                      SizedBox(height: 20.h),
-                      const Text(
-                        'A simple, fun, and creative way to \ntracking and managing your \ncar\'s maintenance',
-                        style: TextStyle(
-                            color: Color(0xFF777779),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18),
-                      ),
+                      AppButton(
+                          text: "Sign In",
+                          onTap:()=>loginCubit.goToLogin(context: context),
+                          firstLinearGradientColor: const Color(0xFFffb421),
+                          secondLinearGradientColor: const Color(0xFFff7521)),
                     ],
                   ),
-                ),
-
-                SizedBox(
-                  height: 70.h,
-                ),
-
-                // buttons
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    AppButton(
-                        text: "Sign Up",
-                        onTap:()=> loginCubit.goToSignUp(context: context),
-                        firstLinearGradientColor: const Color(0xFF464646),
-                        secondLinearGradientColor: const Color(0xFF464646)),
-                    SizedBox(
-                      height: 30.h,
-                    ),
-                    AppButton(
-                        text: "Sign In",
-                        onTap:()=>loginCubit.goToLogin(context: context),
-                        firstLinearGradientColor: const Color(0xFFffb421),
-                        secondLinearGradientColor: const Color(0xFFff7521)),
-                  ],
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },

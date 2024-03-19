@@ -11,7 +11,10 @@ class CashHelper {
   static init() async {
     sharedPreferences = await SharedPreferences.getInstance();
   }
-
+  static Future<void> clearSharedPreferences() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+  }
   static Future<bool?> setData({
      required String key,
      required dynamic value,

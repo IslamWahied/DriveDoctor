@@ -5,10 +5,6 @@ class Global {
 
   static String fireBaseToken = "";
   static UserModel  userModel = UserModel() ;
-
-
-
-
  static List<BrandModel> listBrandModel =[];
 
 

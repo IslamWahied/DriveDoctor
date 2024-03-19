@@ -41,8 +41,7 @@ Future<void> main() async {
   bool isShowWelcomeScreen =
       CashHelper.getData(key: StringManager.isShowWelcomeScreen)??false;
 
-  print("isShowWelcomeScreen");
-  print(isShowWelcomeScreen);
+
 
   // check is User Login
   bool isUserLogin = CashHelper.getData(key: StringManager.isUserLogin)??false;
