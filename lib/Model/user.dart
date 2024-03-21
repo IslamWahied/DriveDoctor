@@ -8,6 +8,7 @@ class UserModel {
   String? photoUrl;
 
   String? userEmail;
+  String? secondEmail;
   String? userPassword;
   String? userFullName;
   String? fireBaseToken;
@@ -15,6 +16,7 @@ class UserModel {
   UserModel({
     this.uid,
     this.photoUrl,
+    this.secondEmail,
 
     this.userFullName,
     this.fireBaseToken,
@@ -27,6 +29,7 @@ class UserModel {
     return {
       'uid': uid,
       'photoUrl': photoUrl,
+      'secondEmail': secondEmail,
 
       'userFullName': userFullName,
       'fireBaseToken': fireBaseToken,
@@ -39,6 +42,7 @@ class UserModel {
     return UserModel(
       uid: map['uid'],
       photoUrl: map['photoUrl'],
+      secondEmail: map['secondEmail'],
       userFullName: map['userFullName'],
       fireBaseToken: map['fireBaseToken'],
       userEmail: map['userEmail'],

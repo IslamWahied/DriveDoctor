@@ -144,9 +144,11 @@ class LoginCubit extends Cubit<LoginState> {
   // SignUp
   GlobalKey<FormState>  signUpFormKey = GlobalKey<FormState>();
   TextEditingController  txtEmailControl =     TextEditingController();
+  TextEditingController  txtSecondEmailControl =     TextEditingController();
   TextEditingController  txtFullNameControl =     TextEditingController();
   TextEditingController  txtPasswordControl =     TextEditingController();
   TextEditingController  txtConfirmPasswordControl = TextEditingController();
+
   String  userImageUrl = "";
   bool isSignUpPasswordObscureText = true;
   bool isSignUpConfirmPasswordObscureText = true;
@@ -269,6 +271,7 @@ class LoginCubit extends Cubit<LoginState> {
           UserModel userModel = UserModel(
             fireBaseToken: Global.fireBaseToken,
             userEmail:txtEmailControl.text ,
+            secondEmail: txtSecondEmailControl.text,
             uid: user!.uid,
             photoUrl: userImageUrl,
             userFullName:txtFullNameControl.text ,
@@ -323,6 +326,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   restSignUpControls(){
     txtEmailControl.clear();
+    txtSecondEmailControl.clear();
     txtFullNameControl.clear();
     txtPasswordControl.clear();
     txtConfirmPasswordControl.clear();

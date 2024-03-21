@@ -106,8 +106,7 @@ class _AddServiceBottomSheetFormState extends State<AddServiceBottomSheetForm> {
                      }
                      // Check if last service kilometers is smaller than or equal to service kilometers
                      if (double.tryParse(value)! < double.tryParse( serviceKilometersController.text)!) {
-                       print(double.tryParse(value));
-                       print(double.tryParse(serviceKilometersController.text));
+
                        return 'should be smaller than or equal to service kilometers';
                      }
                      return null;

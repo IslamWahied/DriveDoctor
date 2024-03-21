@@ -1,4 +1,7 @@
 
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
 
 int getDifferenceBetweenTwoNumbers(
     {required int firstNumber, required int secondNumber   }) {
@@ -7,9 +10,22 @@ int getDifferenceBetweenTwoNumbers(
   var result  = firstNumber - secondNumber;
   return result.toInt();
 }
+bool isArabic({required String text}) {
+  // Arabic Unicode character ranges
+  final arabicRange = RegExp(r'[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]');
+  return arabicRange.hasMatch(text);
+}
+String convertToDateString(String dateTimeString) {
+  // Parse the input string into a DateTime object
+  DateTime dateTime = DateTime.parse(dateTimeString);
 
+  // Format the DateTime object to the desired string format
+  String formattedDateString = "${dateTime.year}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}";
 
-int getPercentageDifference(
+  return formattedDateString;
+}
+
+double getPercentageDifference(
     {required int currentCarKilometers, required int serviceKilometers, required int lastServiceKilometersMade}) {
   // Calculate kilometers since last gear change
   int kilometersSinceChange = currentCarKilometers - lastServiceKilometersMade;
@@ -30,8 +46,13 @@ int getPercentageDifference(
   // Invert the percentage to represent age instead of remaining life
   percentage = 100 - percentage;
 
-  return percentage.toInt();
+  return percentage;
 
+}
+
+Color percentageColor ({required var servicePercentage}){
+  return
+     servicePercentage == 100.0 ||  servicePercentage >= 50.0 ?Colors.green :servicePercentage < 50.0 && servicePercentage > 0? Colors.yellow: Colors.redAccent;
 }
 
 int getDaysBetween({required String fromDate}){

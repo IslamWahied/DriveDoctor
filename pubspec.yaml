@@ -79,14 +79,15 @@ dependencies:
 
   dropdown_search: ^5.0.6
   pointer_interceptor: ^0.10.1
-
+  percent_indicator: ^4.0.1
+  flutter_slimy_card: ^1.0.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
 
 launcher_name:
-  default: "Doctor Car"
+  default: "Car Doctor"
 
 flutter_launcher_icons:
   android: "launcher_icon"

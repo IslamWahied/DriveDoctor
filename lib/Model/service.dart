@@ -8,8 +8,6 @@ class ServiceModel {
   int  serviceKilometers;
   int  lastServiceKilometersMade;
 
-
-
   ServiceModel({
     required this.userId,
     required this.serviceId,

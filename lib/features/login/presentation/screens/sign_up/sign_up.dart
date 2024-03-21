@@ -118,8 +118,11 @@ final  bool isLoginWithEmail;
                               },
                             ) ,
                             validatorFunction: (value) {
-                              if (value!.isEmpty && value.trim() != "" ) {
-                                return 'Please enter a username/email';
+                              if (value!.isEmpty) {
+                                return 'Please enter a Password';
+                              }
+                              if (value.isEmpty && value.trim() != "" ) {
+                                return 'Please enter a Password';
                               }
                               else if(loginCubit.txtConfirmPasswordControl.text != loginCubit.txtPasswordControl.text){
                                 return 'Password and Confirm Password do not match';
@@ -149,6 +152,9 @@ final  bool isLoginWithEmail;
                               },
                             ),
                             validatorFunction: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter a Confirm Password';
+                              }
                               if (value!.isEmpty && value.trim() != "" ) {
                                 return 'Please enter a Confirm Password';
                               }
@@ -158,8 +164,30 @@ final  bool isLoginWithEmail;
                               // You can add more validation logic here if needed
                               return null;
                             },
+                          ),
+
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          //Text Form For Second Email
+                          AppTextFormFiled(
+                            controller: loginCubit.txtSecondEmailControl,
+                            hintText: "Second Email",
+                            isReadOnly: false,
+                            isObscureText:false,
+                            suffixWidget:const SizedBox(),
+                            validatorFunction: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter a second email';
+                              }
+                              if (  value.trim() != "" ) {
+                                return 'Please enter a second email';
+                              }
+
+                              // You can add more validation logic here if needed
+                              return null;
+                            },
                           )
-        
                         ],
                       ),
                     ),
