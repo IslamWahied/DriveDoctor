@@ -81,19 +81,19 @@ class UserAuth {
     }
   }
 
+  Future<UserCredential?> signInAnonymously() async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.signInAnonymously();
 
-  // Future<void> loginWithFacebook() async {
-  //   try {
-  //     final LoginResult loginResult = await FacebookAuth.instance.login();
-  //
-  //     if (loginResult.status == LoginStatus.success) {
-  //       final AccessToken? accessToken = loginResult.accessToken;
-  //       print('Facebook login successful. User ID: ${accessToken?.userId}');
-  //     } else {
-  //       print('Facebook login failed.');
-  //     }
-  //   }  catch (e) {
-  //     print('Facebook authentication error: ${e}');
-  //   }
-  // }
+      return userCredential;
+    } catch (e) {
+
+      return null;
+    }
+  }
+// Function to check if user is signed in anonymously
+  bool isSignedInAnonymously() {
+    User? user = FirebaseAuth.instance.currentUser;
+    return user != null && user.isAnonymous;
+  }
 }

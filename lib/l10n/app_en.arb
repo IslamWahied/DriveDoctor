@@ -1,0 +1,124 @@
+{
+  "lang":"Language",
+"firstWelcomeText":"Join a community \n of creators",
+"secondWelcomeText":"A simple, fun, and creative way to \n tracking and managing your \n car's maintenance",
+
+"signUp":"Sign Up",
+"signOut":"Sign Out",
+"deleteAccount":"Delete My Account",
+"signIn":"Sign In",
+"loginWelcomeText":"Welcome Back",
+  "homeWelcomeText":"Welcome , ",
+"profile":"Profile",
+
+"emailErrorMessage": "Please enter a username/email",
+"emailHint": "UserName / Email",
+
+"passwordErrorMessage": "Please enter a password",
+"passwordHint": "Password",
+
+
+  "fullNameErrorMessage": "Please enter a full name",
+  "fullNameHint": "Full name",
+
+
+  "confirmPasswordErrorMessage": "Please enter a Confirm Password",
+  "confirmPasswordHint": "Confirm Password",
+  "confirmNotMatchErrorMessage": "Password and Confirm Password do not match",
+
+
+  "secondEmailErrorMessage": "Please enter a Second email",
+  "secondEmailHint": "Second email",
+
+
+"anotherAccountText": "Or sign up with another",
+"accountText": "account.",
+"orText": "OR",
+
+"logByGoogle": "CONNECT WITH GOOGLE",
+"addCarTitle": "Add Your First Car",
+"currentCars": "Your current cars",
+
+
+
+"addCar": "Add Car",
+
+"brandNameHint": "Select Brand Name",
+"brandNameErrorMessage": "Please select a car brand",
+
+  "carModelHint": "Car Model",
+  "model": "Model",
+  "carModelErrorMessage": "Please enter a car model",
+
+  "selectLicenseFrom": "Select License \nFrom Date",
+  "from": "From",
+  "selectLicenseFromDate": "select license from date ",
+
+  "licenseFromDate": "License From Date",
+  "licenseFromDateErrorMessage": "Please enter a license from date ",
+
+
+  "licenseToDate": "License To Date",
+  "licenseToDateErrorMessage": "Please enter a license to date ",
+
+
+
+  "selectLicenseTo": "Select License \nTo Date",
+  "to": "To",
+  "selectLicenseToDate": "select license to date ",
+
+  "kilometers": "Kilometers",
+  "kilometersErrorMessage": "Please select a car kilometers",
+  "licenseExpiration": "License Expiration",
+  "expired": "Expired",
+  "details": "Details",
+  "license": "License",
+  "days": "Days",
+  "km": "km",
+  "oldKilometers": "Old Kilometers",
+  "newKilometers": "New Kilometers",
+  "pleaseEnterNumber": "Please enter a number",
+  "valueMustGreaterThanZero": "Value must be greater than 0",
+  "valueMustGreaterFirstField": "Value must be greater than the first field",
+  "kmOver": "km Over",
+  "kmLeft": "km left",
+
+  "addMaintenance": "Add Maintenance",
+  "maintenanceName": "Maintenance Name",
+  "maintenanceErrorMessage": "Please enter Maintenance name",
+  "maintenanceKilometers": "Maintenance Kilometers",
+  "maintenanceKilometersErrorMessage": "Please enter Maintenance kilometers",
+  "lastMaintenanceKilometers": "Last Maintenance Kilometers",
+  "lastMaintenanceKilometersErrorMessage": "Please enter last Maintenance kilometers",
+  "shouldSmallerEqualMaintenanceKilometers": "should be smaller than or equal to Maintenance kilometers",
+
+
+  "totalCost": "Total Cost",
+  "date": "Date",
+  "cost": "Cost",
+  "history": "History",
+  "serviceRepairEvery": "Service should repair every",
+  "carKilometers": "Car Kilometers",
+  "lastRepair": "Last Repair",
+
+
+
+  "enterDetailErrorMessage": "Please enter a detail",
+
+  "valueSmallerEqualCarKm0": "Value must be smaller Or equal car km than 0",
+  "valueSmallerEqualCarKm": "Value must be smaller Or equal car km",
+  "lastRepairKilometers": "Last Repair Kilometers",
+  "newRepairKilometers": "New Repair Kilometers",
+  "costErrorMessage": "Please enter a cost",
+
+
+
+
+
+  "close": "Close",
+  "submit": "Submit",
+  "confirmation": "Confirmation",
+
+  "confirmationMessage": "Are you sure you want to",
+  "deleteAccountMessage": "Delete your account"
+}
