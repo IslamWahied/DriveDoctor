@@ -1,13 +1,16 @@
 
 import 'package:animations/animations.dart';
 import 'package:drive_doctor/core/app_widgets/button.dart';
+import 'package:drive_doctor/core/app_widgets/change_lang.dart';
 import 'package:drive_doctor/core/services/Global.dart';
+import 'package:drive_doctor/core/services/StringManager.dart';
 import 'package:drive_doctor/features/home/presentation/cubit/homeCubit.dart';
 import 'package:drive_doctor/features/home/presentation/cubit/homeState.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UserProfileScreen extends StatelessWidget {
   const UserProfileScreen({super.key});
@@ -25,7 +28,8 @@ backgroundColor: Colors.black,
         backgroundColor: Colors.black,
 centerTitle: true,
 
-title:const Text( "Profile",style: TextStyle(color: Colors.white,fontSize: 18),),
+title:  Text(AppLocalizations.of(context)!.profile,style:
+const TextStyle(color: Colors.white,fontSize: 18),),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
@@ -52,6 +56,7 @@ title:const Text( "Profile",style: TextStyle(color: Colors.white,fontSize: 18),)
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+
                   Column(
                     children: [
                       CircleAvatar(
@@ -66,25 +71,39 @@ title:const Text( "Profile",style: TextStyle(color: Colors.white,fontSize: 18),)
                       SizedBox(height: 20.h,),
                       Text( Global.userModel.userFullName??"",
                           style: const TextStyle(color: Colors.white,fontSize: 18)),
+
+
                     ],
                   ),
                   const Spacer(),
+
                   Column(
                     children: [
+
+                      const ChangeLangButton(),
+                      SizedBox(height: 10.h,),
+
                       AppButton(
-                        onTap: () async => homeCubit.logOut(context:context ),
+
+                        onTap: () async => _showConfirmationDialog(
+                          context ,
+                          AppLocalizations.of(context)!.signOut,
+                              (context) => homeCubit.logOut(context: context),
+                        ),
                         secondLinearGradientColor:Colors.blue ,
                         firstLinearGradientColor:Colors.blue ,
-                        text: "Sign Out",
+                        text: AppLocalizations.of(context)!.signOut,
 
                       ),
                       SizedBox(height: 10.h,),
                       AppButton(
-                        onTap: () async => homeCubit.userDeleteAccount(context:context ),
-                        secondLinearGradientColor:Colors.red ,
-                        firstLinearGradientColor:Colors.red ,
-                        text: "Delete My Account",
-
+                        onTap: () async => _showConfirmationDialog(context,
+                          AppLocalizations.of(context)!.deleteAccountMessage,
+                              (context) => homeCubit.userDeleteAccount(context: context),
+                        ),
+                        secondLinearGradientColor: Colors.red,
+                        firstLinearGradientColor: Colors.red,
+                        text: AppLocalizations.of(context)!.deleteAccount,
                       ),
                     ],
                   ),
@@ -144,4 +163,38 @@ class _UserProfileWidgetState extends State<UserProfile> {
       ),
     );
   }
+}
+Future<void> _showConfirmationDialog(context,String action, Function(BuildContext) actionCallback) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor:   Colors.black87,
+        title:   Text(AppLocalizations.of(context)!.confirmation),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              Text('${AppLocalizations.of(context)!.confirmationMessage} $action ${StringManager.appLang!="ar"?"?":"؟"}'),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child:   Text(AppLocalizations.of(context)!.close,style: const TextStyle(color: Colors.white),),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            child: Text(AppLocalizations.of(context)!.submit,style: const TextStyle(color: Colors.white),),
+            onPressed: () {
+              actionCallback(context);
+
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

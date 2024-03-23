@@ -7,7 +7,7 @@ import 'package:drive_doctor/features/home/presentation/screens/user_profile.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pointer_interceptor/pointer_interceptor.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 bool isFirstBuild = true;
 
@@ -30,8 +30,7 @@ class HomeScreen extends StatelessWidget {
           backgroundColor: Colors.black,
           resizeToAvoidBottomInset: false, // This line ensures that the keyboard doesn't resize the scaffold
           floatingActionButton:
-          homeCubit.listUserCars.isNotEmpty
-              ? FloatingActionButton(
+       FloatingActionButton(
             backgroundColor: Colors.white,
             onPressed: () {
               showModalBottomSheet(
@@ -42,7 +41,7 @@ class HomeScreen extends StatelessWidget {
             },
             child: Image.asset("assets/image/1.png"),
           )
-              : const SizedBox(),
+              ,
           body: SafeArea(
             child: Container(
               padding: const EdgeInsets.all(25.0),
@@ -55,15 +54,13 @@ class HomeScreen extends StatelessWidget {
                   end: FractionalOffset.bottomCenter,
                 ),
               ),
-              child: const SafeArea(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    HeaderHomeScreen(),
-                    BodyHomeScreen(),
-                  ],
-                ),
+              child: const Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  HeaderHomeScreen(),
+                  BodyHomeScreen(),
+                ],
               ),
             ),
           ),
@@ -95,9 +92,9 @@ class HeaderHomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text(
-                    'Welcome , ',
-                    style: TextStyle(
+                    Text(
+                      AppLocalizations.of(context)!.homeWelcomeText,
+                    style: const TextStyle(
                       fontSize: 18.0,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -118,13 +115,13 @@ class HeaderHomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              width: 20.w,
-            ),
-            const Icon(
-              Icons.notifications,
-              color: Colors.white,
-            )
+            // SizedBox(
+            //   width: 20.w,
+            // ),
+            // const Icon(
+            //   Icons.notifications,
+            //   color: Colors.white,
+            // )
           ],
         ),
         SizedBox(height: 35.h),
@@ -149,9 +146,9 @@ const BodyHomeScreen({super.key });
             children: [
 
             if (homeCubit.listUserCars.isNotEmpty)
-              const Text(
-                "Your current cars",
-                style: TextStyle(
+                Text(
+                  AppLocalizations.of(context)!.currentCars,
+                style: const TextStyle(
                     color: Color.fromRGBO(112, 112, 112, 1),
                     fontSize: 20),
               ),
@@ -185,10 +182,10 @@ const BodyHomeScreen({super.key });
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Center(
+                      Center(
                         child: Text(
-                          "Add Your First Car",
-                          style: TextStyle(
+                          AppLocalizations.of(context)!.addCarTitle,
+                          style: const TextStyle(
                             fontSize: 18.0,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UpdateLicenseDateBottomSheet extends StatefulWidget {
   final CarModel carModel;
@@ -67,15 +68,15 @@ class _UpdateLicenseDateBottomSheetState
                     }
                   },
                   style: const TextStyle(color: Colors.white),
-                  decoration: const InputDecoration(
-                    suffixIcon: Icon(Icons.calendar_month),
-                    labelText: "License From Date",
-                    labelStyle: TextStyle(color: Colors.grey),
-                    border: OutlineInputBorder(),
+                  decoration:   InputDecoration(
+                    suffixIcon: const Icon(Icons.calendar_month),
+                    labelText:  AppLocalizations.of(context)!.licenseFromDate,
+                    labelStyle: const TextStyle(color: Colors.grey),
+                    border: const OutlineInputBorder(),
                   ),
                   validator: (value) => value != null && value.isNotEmpty
                       ? null
-                      : 'Please enter a license from date ',
+                      :  AppLocalizations.of(context)!.licenseFromDateErrorMessage,
                 ),
                 SizedBox(height: 16.h),
                 TextFormField(
@@ -97,15 +98,15 @@ class _UpdateLicenseDateBottomSheetState
                     }
                   },
                   style: const TextStyle(color: Colors.white),
-                  decoration: const InputDecoration(
-                    suffixIcon: Icon(Icons.calendar_month),
-                    labelText: "License To Date",
-                    labelStyle: TextStyle(color: Colors.grey),
-                    border: OutlineInputBorder(),
+                  decoration:   InputDecoration(
+                    suffixIcon: const Icon(Icons.calendar_month),
+                    labelText:  AppLocalizations.of(context)!.licenseToDate,
+                    labelStyle: const TextStyle(color: Colors.grey),
+                    border: const OutlineInputBorder(),
                   ),
                   validator: (value) => value != null && value.isNotEmpty
                       ? null
-                      : 'Please enter a license to date ',
+                      :  AppLocalizations.of(context)!.licenseToDateErrorMessage,
                 ),
                 SizedBox(height: 16.h),
                 Row(
@@ -115,9 +116,9 @@ class _UpdateLicenseDateBottomSheetState
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      child: const Text(
-                        "Close",
-                        style: TextStyle(color: Colors.red),
+                      child:   Text(
+                          AppLocalizations.of(context)!.close,
+                        style: const TextStyle(color: Colors.red),
                       ),
                     ),
                     SizedBox(width: 10.h),
@@ -133,7 +134,7 @@ class _UpdateLicenseDateBottomSheetState
                           );
                         }
                       },
-                      child: const Text("Submit"),
+                      child:   Text( AppLocalizations.of(context)!.submit),
                     ),
                   ],
                 ),

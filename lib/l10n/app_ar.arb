@@ -1,0 +1,120 @@
+{
+  "lang":"اللغة",
+  "firstWelcomeText":"انضم إلى مجتمع\n من المبدعين",
+  "secondWelcomeText":"طريقة بسيطة لتتبع وإدارة صيانة \nالسيارة الخاص بك",
+  "signUp":"انشاء حساب جديد",
+  "signOut":"تسجيل الخروج",
+  "deleteAccount":"حذف الحساب",
+  "signIn":"تسجيل الدخول",
+  "loginWelcomeText":"مرحبًا بعودتك",
+  "homeWelcomeText":"مرحبًا , ",
+  "profile":"حسابي",
+
+  "emailErrorMessage": "الرجاء إدخال اسم المستخدم/البريد الإلكتروني",
+  "emailHint": "اسم المستخدم / البريد الإلكتروني",
+
+  "fullNameErrorMessage": "الرجاء إدخال الاسم الكامل",
+  "fullNameHint": "الاسم الكامل",
+
+
+  "confirmPasswordErrorMessage": "الرجاء إدخال تأكيد كلمة المرور",
+  "confirmPasswordHint": "تأكيد كلمة المرور",
+  "confirmNotMatchErrorMessage": "كلمة المرور وتأكيد كلمة المرور غير متطابقين",
+
+
+
+  "secondEmailErrorMessage": "الرجاء إدخال البريد الإلكتروني الثاني",
+  "secondEmailHint": "البريد الإلكتروني الثاني",
+
+
+
+  "passwordErrorMessage": "الرجاء إدخال كلمة المرور",
+  "passwordHint": "كلمة المرور",
+
+  "anotherAccountText": "أو قم بالتسجيل ",
+  "accountText": "بحساب اخر.",
+  "orText": "أو",
+  "logByGoogle": "التسجيل باستخدام Google",
+  "addCarTitle": "أضف سيارتك الأولى",
+  "currentCars": "سياراتك الحالية",
+
+
+
+
+
+  "addCar": "إضافة سيارة",
+
+  "brandNameHint": "اختر اسم العلامة التجارية",
+  "brandNameErrorMessage": "يرجى اختيار علامة تجارية للسيارة",
+
+  "carModelHint": "طراز السيارة",
+  "carModelErrorMessage": "يرجى إدخال طراز السيارة",
+
+  "selectLicenseFrom": "حدد تاريخ الرخصة \n من",
+  "from": "من",
+  "selectLicenseFromDate": "حدد تاريخ بدء الرخصة",
+
+  "selectLicenseTo": "حدد تاريخ الرخصة \n حتى",
+  "to": "حتى",
+  "selectLicenseToDate": "حدد تاريخ انتهاء الرخصة",
+
+
+  "licenseFromDate": "تاريخ بدء الرخصة",
+  "licenseFromDateErrorMessage": "يرجى إدخال تاريخ بدء الرخصة",
+
+  "licenseToDate": "تاريخ انتهاء الرخصة",
+  "licenseToDateErrorMessage": "يرجى إدخال تاريخ انتهاء الرخصة",
+
+  "kilometers": "الكيلومترات",
+  "kilometersErrorMessage": "يرجى تحديد عدد الكيلومترات للسيارة",
+  "licenseExpiration": "انتهاء الرخصة",
+  "license": "الرخصة",
+  "km": "كم",
+  "expired": "منتهي الصلاحية",
+  "details": "تفاصيل",
+  "oldKilometers": "الكيلومترات القديمة",
+  "newKilometers": "الكيلومترات الجديدة",
+  "pleaseEnterNumber": "برجاء إدخال الرقم",
+  "valueMustGreaterFirstField": "يجب أن تكون القيمة أكبر من الحقل الأول",
+  "valueMustGreaterThanZero": "يجب أن تكون القيمة أكبر من 0",
+  "kmOver": "كم زائد",
+  "kmLeft": "كم المتبقي",
+  "model": "طراز",
+  "days": "يوما",
+
+  "addMaintenance": "إضافة صيانة",
+  "maintenanceName": "اسم الصيانة",
+  "maintenanceErrorMessage": "يرجى إدخال اسم الصيانة",
+  "maintenanceKilometers": "كيلومترات الصيانة",
+
+  "maintenanceKilometersErrorMessage": "يرجى إدخال كيلومترات الصيانة",
+  "lastMaintenanceKilometers": "آخر كيلومتر للصيانة",
+  "lastMaintenanceKilometersErrorMessage": "يرجى إدخال آخر كيلومتر للصيانة",
+  "shouldSmallerEqualMaintenanceKilometers": "يجب أن يكون أصغر من أو يساوي كيلومترات الصيانة",
+
+  "valueSmallerEqualCarKm": "يجب أن تكون القيمة أصغر أو تساوي كيلومتر السيارة",
+
+
+
+  "totalCost": "التكلفة الإجمالية",
+  "date": "التاريخ",
+  "cost": "التكلفة",
+  "history": "السجل",
+  "serviceRepairEvery": "يجب إصلاح الخدمة كل",
+  "carKilometers": "الكيلومترات للسيارة",
+  "lastRepair": "آخر إصلاح",
+
+
+  "enterDetailErrorMessage": "يرجى إدخال التفاصيل",
+
+  "valueSmallerEqualCarKm0": "يجب أن يكون القيمة أقل أو تساوي كيلومتر السيارة من 0",
+  "lastRepairKilometers": "كيلومترات آخر إصلاح",
+  "newRepairKilometers": "كيلومترات إصلاح جديدة",
+  "costErrorMessage": "يرجى إدخال التكلفة",
+
+  "close": "إغلاق",
+  "submit": "حفظ",
+  "confirmation": "تأكيد",
+  "confirmationMessage": "هل أنت متأكد أنك تريد",
+  "deleteAccountMessage": "حذف حسابك"
+}

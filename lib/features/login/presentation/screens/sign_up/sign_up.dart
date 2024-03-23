@@ -7,6 +7,7 @@ import 'package:drive_doctor/features/login/presentation/screens/widgets/sign_wi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SignUp extends StatelessWidget {
 final  bool isLoginWithEmail;
@@ -17,22 +18,23 @@ final  bool isLoginWithEmail;
     return Scaffold(
       backgroundColor: const Color(0xFF212121),
 
-      body: SafeArea(
-        child: BlocConsumer<LoginCubit, LoginState>(
-          builder: (context, state) {
-            var loginCubit = LoginCubit.get(context);
-            return SingleChildScrollView(
+      body: BlocConsumer<LoginCubit, LoginState>(
+        builder: (context, state) {
+          var loginCubit = LoginCubit.get(context);
+          return SafeArea(
+            child: SingleChildScrollView(
               child: Form(
                 key: loginCubit.signUpFormKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    SizedBox(height: 10.h,),
                     CustomAppBar(
                       isShowBackButton: true,
-                      titleWidget:   const Text(
-                  "Sign Up",
-                  style: TextStyle(
+                      titleWidget:     Text(
+                        AppLocalizations.of(context)!.signUp,
+                  style: const TextStyle(
                       color: Color(0xFF909093),
                       fontSize: 25,
                       fontWeight: FontWeight.bold),
@@ -44,7 +46,7 @@ final  bool isLoginWithEmail;
                     ),
                     // Circle For User Profile
                     CircleAvatar(
-                      radius: 80,
+                      radius: 45.h,
                       backgroundImage: loginCubit.userImageUrl != ""
                           ? NetworkImage(loginCubit.userImageUrl)
                           : null,
@@ -53,9 +55,9 @@ final  bool isLoginWithEmail;
                           : null,
                     ),
                     SizedBox(
-                      height: 30.h,
+                      height: 10.h,
                     ),
-        
+
                     // All Text Form Filed
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 25.w),
@@ -65,47 +67,47 @@ final  bool isLoginWithEmail;
                           // Text Form For UserName / Email
                           AppTextFormFiled(
                             controller:loginCubit.txtEmailControl ,
-                            hintText: "UserName / Email",
+                            hintText: AppLocalizations.of(context)!.emailHint,
                             isObscureText:false ,
                             isReadOnly: isLoginWithEmail,
                             suffixWidget:const SizedBox() ,
                             validatorFunction: (value) {
                               if (value!.isEmpty) {
-                                return 'Please enter a username/email';
+                                return AppLocalizations.of(context)!.emailErrorMessage;
                               }
                               // You can add more validation logic here if needed
                               return null;
                             },
                           ),
-        
+
                           SizedBox(
                             height: 20.h,
                           ),
-        
+
                          //  Text Form For Full Name
                           AppTextFormFiled(
                             controller: loginCubit.txtFullNameControl ,
-                            hintText: "Full Name",
+                            hintText: AppLocalizations.of(context)!.fullNameHint,
                             isReadOnly:false ,
                             suffixWidget:const SizedBox() ,
                             isObscureText:false ,
                             validatorFunction: (value) {
                               if (value!.isEmpty) {
-                                return 'Please enter a username/email';
+                                return AppLocalizations.of(context)!.fullNameErrorMessage;
                               }
                               // You can add more validation logic here if needed
                               return null;
                             },
                           ),
-        
+
                           SizedBox(
                             height: 20.h,
                           ),
-        
+
                           //Text Form For Password
                           AppTextFormFiled(
                             controller: loginCubit.txtPasswordControl,
-                            hintText: "Password",
+                            hintText: AppLocalizations.of(context)!.passwordHint,
                             isReadOnly: false,
                             isObscureText:loginCubit.isSignUpPasswordObscureText ,
                             suffixWidget:IconButton(
@@ -119,27 +121,27 @@ final  bool isLoginWithEmail;
                             ) ,
                             validatorFunction: (value) {
                               if (value!.isEmpty) {
-                                return 'Please enter a Password';
+                                return AppLocalizations.of(context)!.passwordErrorMessage;
                               }
                               if (value.isEmpty && value.trim() != "" ) {
-                                return 'Please enter a Password';
+                                return AppLocalizations.of(context)!.passwordErrorMessage;
                               }
                               else if(loginCubit.txtConfirmPasswordControl.text != loginCubit.txtPasswordControl.text){
-                                return 'Password and Confirm Password do not match';
+                                return AppLocalizations.of(context)!.confirmNotMatchErrorMessage;
                               }
                               // You can add more validation logic here if needed
                               return null;
                             },
                           ),
-        
+
                           SizedBox(
                             height: 20.h,
                           ),
-        
+
                           //Text Form For Confirm Password
                           AppTextFormFiled(
                             controller: loginCubit.txtConfirmPasswordControl,
-                            hintText: "Confirm Password",
+                            hintText: AppLocalizations.of(context)!.confirmPasswordHint,
                             isReadOnly: false,
                             isObscureText:loginCubit.isSignUpConfirmPasswordObscureText ,
                             suffixWidget: IconButton(
@@ -153,13 +155,13 @@ final  bool isLoginWithEmail;
                             ),
                             validatorFunction: (value) {
                               if (value!.isEmpty) {
-                                return 'Please enter a Confirm Password';
+                                return AppLocalizations.of(context)!.confirmPasswordErrorMessage;
                               }
-                              if (value!.isEmpty && value.trim() != "" ) {
-                                return 'Please enter a Confirm Password';
+                              if (value.isEmpty && value.trim() != "" ) {
+                                return AppLocalizations.of(context)!.confirmPasswordErrorMessage;
                               }
                               else if(loginCubit.txtConfirmPasswordControl.text != loginCubit.txtPasswordControl.text){
-                                return 'Password and Confirm Password do not match';
+                                return AppLocalizations.of(context)!.confirmNotMatchErrorMessage;
                               }
                               // You can add more validation logic here if needed
                               return null;
@@ -172,16 +174,16 @@ final  bool isLoginWithEmail;
                           //Text Form For Second Email
                           AppTextFormFiled(
                             controller: loginCubit.txtSecondEmailControl,
-                            hintText: "Second Email",
+                            hintText: AppLocalizations.of(context)!.secondEmailHint,
                             isReadOnly: false,
                             isObscureText:false,
                             suffixWidget:const SizedBox(),
                             validatorFunction: (value) {
                               if (value!.isEmpty) {
-                                return 'Please enter a second email';
+                                return AppLocalizations.of(context)!.secondEmailErrorMessage;
                               }
-                              if (  value.trim() != "" ) {
-                                return 'Please enter a second email';
+                              if (  value.trim() == "" ) {
+                                return AppLocalizations.of(context)!.secondEmailErrorMessage;
                               }
 
                               // You can add more validation logic here if needed
@@ -194,10 +196,10 @@ final  bool isLoginWithEmail;
                     SizedBox(
                       height:isLoginWithEmail ? 70.h : 40.h,
                     ),
-        
+
                     // Sign Up Button
                     AppButton(
-                      text: "Sign Up",
+                      text: AppLocalizations.of(context)!.signUp,
                       onTap:  () async {
                         if (loginCubit.signUpFormKey.currentState!
                             .validate()) {
@@ -208,18 +210,18 @@ final  bool isLoginWithEmail;
                       firstLinearGradientColor: const Color(0xFFffb421),
                       secondLinearGradientColor:   const Color(0xFFff7521),
                     ),
-        
+
                     // SignWithGmail
                     if(!isLoginWithEmail)
                     Column(
                       children: [
 
                         SizedBox(height: 15.h),
-                        const Row(
+                          Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
 
-                            Text("OR",style: TextStyle(color: Colors.white),)
+                            Text(AppLocalizations.of(context)!.orText,style: const TextStyle(color: Colors.white),)
                           ],
                         ),
                         SizedBox(height: 10.h),
@@ -233,14 +235,14 @@ final  bool isLoginWithEmail;
                         )
                       ],
                     ),
-        
+
                   ],
                 ),
               ),
-            );
-          },
-          listener: (context, state) {},
-        ),
+            ),
+          );
+        },
+        listener: (context, state) {},
       ),
     );
   }

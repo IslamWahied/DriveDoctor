@@ -1,5 +1,6 @@
 
 import 'package:drive_doctor/core/app_widgets/app_bar.dart';
+import 'package:drive_doctor/core/app_widgets/change_lang.dart';
 import 'package:drive_doctor/core/app_widgets/text_form_filed.dart';
 import 'package:drive_doctor/features/login/presentation/cubit/loginCubit.dart';
 import 'package:drive_doctor/features/login/presentation/cubit/loginState.dart';
@@ -10,6 +11,7 @@ import 'package:drive_doctor/features/login/presentation/screens/widgets/sign_wi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class SignInScreen extends StatelessWidget {
@@ -33,28 +35,29 @@ class SignInScreen extends StatelessWidget {
                  crossAxisAlignment: CrossAxisAlignment.center,
                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                  children: [
+                   const Align(alignment: Alignment.centerRight,child: ChangeLangButton()),
+
+                   SizedBox(height: 40.h),
                    CustomAppBar(
                      isShowBackButton: false,
                        titleWidget:  Column(
                          children: [
-                           const Text(
-                             'Sign In',
-                             style: TextStyle(
+                             Text(
+                             AppLocalizations.of(context)!.signIn,
+                             style: const TextStyle(
                                  color: Color(0xFF909093),
                                  fontSize: 35,
                                  fontWeight: FontWeight.bold),
                            ),
-                           SizedBox(
-                             height: 10.h,
-                           ),
-                           const Text(
-                             'Welcome Back',
-                             style: TextStyle(
+
+                             Text(
+                               AppLocalizations.of(context)!.loginWelcomeText,
+                             style: const TextStyle(
                                  color: Color(0xFF909093),
                                  fontSize: 25,
                                  fontWeight: FontWeight.bold),
                            ),
-                           SizedBox(height: 70.h),
+
                          ],
                        ),
                    ),
@@ -69,27 +72,25 @@ class SignInScreen extends StatelessWidget {
                            isReadOnly:false ,
                            validatorFunction: (value) {
                              if (value!.isEmpty) {
-                               return 'Please enter a username/email';
+                               return AppLocalizations.of(context)!.emailErrorMessage;
                              }
                              // You can add more validation logic here if needed
                              return null;
                            },
                            suffixWidget:  const SizedBox(),
                            isObscureText:false,
-                           hintText: "UserName / Email",
+                           hintText:  AppLocalizations.of(context)!.emailHint,
 
                          ),
 
-                         SizedBox(
-                           height: 10.h,
-                         ),
+
                          AppTextFormFiled(
                            controller: loginCubit.txtLoginPasswordControl,
                            isReadOnly:false ,
 
                            validatorFunction: (value) {
                              if (value!.isEmpty) {
-                               return 'Please enter a password';
+                               return  AppLocalizations.of(context)!.passwordErrorMessage;
                              }
                              // You can add more validation logic here if needed
                              return null;
@@ -104,7 +105,7 @@ class SignInScreen extends StatelessWidget {
                              },
                            ),
                            isObscureText: loginCubit.isLoginPasswordObscureText,
-                           hintText: "Password",
+                           hintText:  AppLocalizations.of(context)!.passwordHint,
 
                          ),
 
@@ -112,9 +113,9 @@ class SignInScreen extends StatelessWidget {
                        ],
                      ),
                    ),
-                   SizedBox(height: 100.h),
+                   SizedBox(height: 60.h),
                    AppButton(
-                     text: "Sign In",
+                     text: AppLocalizations.of(context)!.signIn,
                      onTap: () async {
                        if (loginCubit.loginFormKey.currentState!.validate()) {
                          await loginCubit.login(context: context);
@@ -130,9 +131,9 @@ class SignInScreen extends StatelessWidget {
                      mainAxisSize: MainAxisSize.min,
                      mainAxisAlignment: MainAxisAlignment.start,
                      children: [
-                       const Text(
-                         'Or sign up with another',
-                         style: TextStyle(
+                         Text(
+                           AppLocalizations.of(context)!.anotherAccountText,
+                         style: const TextStyle(
                              color: Color(0xFF909093),
                              fontSize: 18,
                              fontWeight: FontWeight.bold),
@@ -140,19 +141,19 @@ class SignInScreen extends StatelessWidget {
                        Row(
                          mainAxisAlignment: MainAxisAlignment.center,
                          children: [
-                           const Text(
-                             'account.',
-                             style: TextStyle(
+                             Text(
+                             AppLocalizations.of(context)!.accountText,
+                             style: const TextStyle(
                                  color: Color(0xFF909093),
                                  fontSize: 18,
                                  fontWeight: FontWeight.bold),
                            ),
                            TextButton(
                                onPressed: () async =>loginCubit.goToSignUp(context: context),
-                               child: const Text(
-                                 'sign up',
+                               child:   Text(
+                                 AppLocalizations.of(context)!.signUp,
         
-                                 style: TextStyle(
+                                 style: const TextStyle(
                                      decoration: TextDecoration.underline,
                                      color: Colors.blue,
                                      fontSize: 18,
@@ -164,14 +165,15 @@ class SignInScreen extends StatelessWidget {
                      ],
                    ),
                    SizedBox(height: 10.h),
-                    const Row(
+                      Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
 
-                        Text("OR",style: TextStyle(color: Colors.white),)
+                        Text( AppLocalizations.of(context)!.orText,style: const TextStyle(color: Colors.white),)
                       ],
                     ),
-                   SizedBox(height: 10.h),
+                   SizedBox(height: 30.h),
+
                     SignWithGmail(
                      onTap: () async {
 

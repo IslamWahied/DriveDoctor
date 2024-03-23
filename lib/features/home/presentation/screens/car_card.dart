@@ -3,20 +3,18 @@ import 'package:drive_doctor/Model/car.dart';
 import 'package:drive_doctor/core/services/Global.dart';
 import 'package:drive_doctor/core/services/helper.dart';
 import 'package:drive_doctor/features/home/presentation/cubit/homeCubit.dart';
-import 'package:drive_doctor/features/home/presentation/cubit/homeState.dart';
+
 import 'package:drive_doctor/features/home/presentation/screens/car_detail.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CarCard extends StatelessWidget {
   final int index;
   final CarModel carModel;
   const CarCard({super.key, required this.index, required this.carModel});
-
-
-
   @override
   Widget build(BuildContext context) {
     bool printed = false;
@@ -52,7 +50,7 @@ class CarCard extends StatelessWidget {
                   Hero(
                       tag: index.toString(),
                       child: Image.asset("assets/image/tesla.png",
-                          width: 100.w, height: 40.h)),
+                          width: 80.w, height: 40.h)),
                   if(Global.listBrandModel[carModel.carBrandId].brandImageUrl != "")
                     Hero(
                       tag: index.toString(),
@@ -63,7 +61,7 @@ class CarCard extends StatelessWidget {
                       ),
                     ),
 
-                  SizedBox(height: 5.h),
+                  SizedBox(height: 1.h),
                   Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -73,15 +71,15 @@ class CarCard extends StatelessWidget {
                           carModel.carKilometers.toString(),
                           style:   TextStyle(color: Colors.white,fontSize:15.w ),
                         ),
-                        const Text(
-                          "km",
-                          style: TextStyle(color: Colors.white),
+                          Text(
+                            AppLocalizations.of(context)!.km,
+                          style: const TextStyle(color: Colors.white),
                         ),
                       ],
                     ),
                   ),
                   SizedBox(height: 5.h),
-                  Text("License  (${getDaysBetween(fromDate: carModel.licenseToDate)} Days)",
+                  Text("${AppLocalizations.of(context)!.license}  (${getDaysBetween(fromDate: carModel.licenseToDate)} ${AppLocalizations.of(context)!.days})",
                       textAlign: TextAlign.center,style:   TextStyle(
                           color:
                           getDaysBetween(fromDate: carModel.licenseToDate) >= 30?

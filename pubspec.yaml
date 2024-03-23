@@ -30,7 +30,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.18.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -73,7 +75,6 @@ dependencies:
 
   flutter_screenutil: ^5.9.0
 
-  flutter_localization: ^0.2.0
 
   launcher_name: ^1.0.2
 
@@ -81,13 +82,15 @@ dependencies:
   pointer_interceptor: ^0.10.1
   percent_indicator: ^4.0.1
   flutter_slimy_card: ^1.0.2
+  flutter_localization: ^0.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
 
 launcher_name:
-  default: "Car Doctor"
+  default: "Car Fox"
+  ar: "ثعلب السارات"
 
 flutter_launcher_icons:
   android: "launcher_icon"
@@ -114,7 +117,7 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
+  generate: true
   assets:
     - assets/
     - assets/image/
@@ -130,7 +133,7 @@ flutter_native_splash:
   #background_image_dark: "assets/dark-background.png"
   image_dark: assets/image/splashLogo.png
   android_12:
-    image: assets/image/splashLogo.png
+    image: assets/image/Logo.png
     # Splash screen background color.
     color: "#FFA500"
 

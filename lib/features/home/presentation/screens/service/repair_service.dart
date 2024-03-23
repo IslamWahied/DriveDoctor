@@ -1,11 +1,12 @@
 import 'package:drive_doctor/Model/car.dart';
 import 'package:drive_doctor/Model/service.dart';
+import 'package:drive_doctor/features/home/presentation/cubit/homeCubit.dart';
 import 'package:drive_doctor/features/home/presentation/cubit/homeState.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../cubit/homeCubit.dart';
 
 class RepairServiceBottomSheet extends StatefulWidget {
   final CarModel carModel;
@@ -65,9 +66,9 @@ class _RepairServiceBottomSheetState
                       readOnly: true,
                       style: TextStyle(color: Colors.grey[500]),
                       decoration: InputDecoration(
-                        suffixText: "KM",
+                        suffixText: AppLocalizations.of(context)!.km,
                         suffixStyle: TextStyle(color: Colors.grey[500]),
-                        labelText: "Last Repair Kilometers",
+                        labelText: AppLocalizations.of(context)!.lastRepairKilometers,
                         labelStyle: const TextStyle(color: Colors.grey),
                         border: const OutlineInputBorder(),
                       ),
@@ -76,28 +77,28 @@ class _RepairServiceBottomSheetState
                     TextFormField(
                       controller: _secondController,
                       keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        suffixText: "KM",
-                        suffixStyle: TextStyle(color: Colors.white),
-                        labelText: "New Repair Kilometers",
-                        labelStyle: TextStyle(color: Colors.grey),
-                        border: OutlineInputBorder(),
+                      decoration:   InputDecoration(
+                        suffixText: AppLocalizations.of(context)!.km,
+                        suffixStyle: const TextStyle(color: Colors.white),
+                        labelText: AppLocalizations.of(context)!.newRepairKilometers,
+                        labelStyle: const TextStyle(color: Colors.grey),
+                        border: const OutlineInputBorder(),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter a number';
+                          return AppLocalizations.of(context)!.pleaseEnterNumber;
                         }
                         final firstValue = int.tryParse(_firstController.text);
                         final secondValue = int.tryParse(value);
                         if (firstValue != null && secondValue != null) {
                           if (secondValue <= 0) {
-                            return 'Value must be greater than 0';
+                            return AppLocalizations.of(context)!.valueMustGreaterThanZero;
                           }
                           if (secondValue > widget.carModel.carKilometers) {
-                            return 'Value must be smaller Or equal car km than 0';
+                            return AppLocalizations.of(context)!.valueSmallerEqualCarKm0;
                           }
                           if (secondValue <= firstValue) {
-                            return 'Value must be greater than the first field';
+                            return AppLocalizations.of(context)!.valueMustGreaterFirstField;
                           }
                         }
                         return null;
@@ -111,7 +112,7 @@ class _RepairServiceBottomSheetState
 
                         suffixStyle: const TextStyle(color: Colors.white),
                         suffixIcon: Icon(Icons.monetization_on,color: Colors.grey[350]),
-                        labelText: "Cost",
+                        labelText: AppLocalizations.of(context)!.cost,
                         hintText: "0",
                         hintStyle:  const TextStyle(color: Colors.grey),
                         labelStyle: const TextStyle(color: Colors.grey),
@@ -119,7 +120,7 @@ class _RepairServiceBottomSheetState
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter a cost';
+                          return AppLocalizations.of(context)!.costErrorMessage;
                         }
 
                         return null;
@@ -135,13 +136,13 @@ class _RepairServiceBottomSheetState
                       decoration:   InputDecoration(
                        suffixIcon: Icon(Icons.description,color: Colors.grey[350]),
                         suffixStyle: const TextStyle(color: Colors.white),
-                        labelText: "Detail",
+                        labelText: AppLocalizations.of(context)!.details,
                         labelStyle: const TextStyle(color: Colors.grey),
                         border: const OutlineInputBorder(),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter a detail';
+                          return AppLocalizations.of(context)!.enterDetailErrorMessage;
                         }
 
                         return null;
@@ -154,9 +155,9 @@ class _RepairServiceBottomSheetState
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          child: const Text(
-                            "Close",
-                            style: TextStyle(color: Colors.red),
+                          child:   Text(
+                              AppLocalizations.of(context)!.close,
+                            style: const TextStyle(color: Colors.red),
                           ),
                         ),
                         SizedBox(width: 10.h),
@@ -176,7 +177,7 @@ class _RepairServiceBottomSheetState
                               );
                             }
                           },
-                          child: const Text("Submit"),
+                          child:   Text(AppLocalizations.of(context)!.submit),
                         ),
                       ],
                     ),

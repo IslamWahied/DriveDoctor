@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddCarBottomSheet extends StatefulWidget {
   const AddCarBottomSheet({super.key});
@@ -44,21 +45,21 @@ class _AddCarBottomSheetState extends State<AddCarBottomSheet> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 5, top: 5),
+                        Padding(
+                        padding: const EdgeInsets.only(left: 5, top: 5),
                         child: Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.add,
                               color: Colors.blue,
                               size: 20,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
                             Text(
-                              "Add Car",
-                              style: TextStyle(
+                              AppLocalizations.of(context)!.addCar,
+                              style: const TextStyle(
                                 fontSize: 18,
                                 color: Colors.blue,
                                 fontWeight: FontWeight.w400,
@@ -104,21 +105,21 @@ class _AddCarBottomSheetState extends State<AddCarBottomSheet> {
                           ),
                         ),
                         items:Global.listBrandModel.map((brand) => brand.brandName).toList(),
-                        dropdownDecoratorProps: const DropDownDecoratorProps(
+                        dropdownDecoratorProps:   DropDownDecoratorProps(
 
                           dropdownSearchDecoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                            labelText: "Brand Name",
-                            labelStyle: TextStyle(color: Colors.grey),
-                            hintText: "Select Brand Name",
+                              border: const OutlineInputBorder(),
+                            labelText:AppLocalizations.of(context)!.brandNameHint,
+                            labelStyle: const TextStyle(color: Colors.grey),
+                            hintText: AppLocalizations.of(context)!.brandNameHint,
                           ),
-                          baseStyle: TextStyle(color: Colors.white),
+                          baseStyle: const TextStyle(color: Colors.white),
 
 
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'Please select a car brand';
+                            return AppLocalizations.of(context)!.brandNameErrorMessage;
                           }
                           // You can add more validation logic here if needed
                           return null;
@@ -139,14 +140,14 @@ class _AddCarBottomSheetState extends State<AddCarBottomSheet> {
                       TextFormField(
                         controller: homeCubit.carModelController,
                         style: const TextStyle(color: Colors.white),
-                        decoration: const InputDecoration(
-                          labelText: "Car Model",
-                          labelStyle: TextStyle(color: Colors.grey),
-                          border: OutlineInputBorder(),
+                        decoration:   InputDecoration(
+                          labelText: AppLocalizations.of(context)!.carModelHint,
+                          labelStyle: const TextStyle(color: Colors.grey),
+                          border: const OutlineInputBorder(),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'Please enter a car model';
+                            return AppLocalizations.of(context)!.carModelErrorMessage;
                           }
                           // You can add more validation logic here if needed
                           return null;
@@ -165,6 +166,21 @@ class _AddCarBottomSheetState extends State<AddCarBottomSheet> {
                             child: TextButton(
                               onPressed: () async {
                                 final DateTime? picked = await showDatePicker(
+                                  builder: (BuildContext context, Widget? child) {
+                                    return Theme(
+                                      data: ThemeData.dark().copyWith(
+                                        colorScheme: const ColorScheme.dark(
+                                          primary: Colors.blue, // Change this to your desired color
+                                          onPrimary: Colors.black, // Change this to your desired text color
+                                        ),
+                                        textTheme: const TextTheme(
+                                          bodyText1: TextStyle(color: Colors.white), // Change this to your desired text color
+                                          bodyText2: TextStyle(color: Colors.white), // Change this to your desired text color
+                                        ),
+                                      ),
+                                      child: child!,
+                                    );
+                                  },
                                   context: context,
                                   initialDate: DateTime.now(),
                                   firstDate: DateTime(2000),
@@ -184,15 +200,15 @@ class _AddCarBottomSheetState extends State<AddCarBottomSheet> {
                                 children: [
                                   Text(
                                     homeCubit.licenseFromDate == null
-                                        ? 'Select License \nFrom Date'
-                                        : 'From: ${DateFormat('yyyy-MM-dd').format(homeCubit.licenseFromDate!)}',
-                                    style: const TextStyle(fontSize: 14),
+                                        ? AppLocalizations.of(context)!.selectLicenseFrom
+                                        : '${AppLocalizations.of(context)!.from}: ${DateFormat('yyyy-MM-dd').format(homeCubit.licenseFromDate!)}',
+                                    style: const TextStyle(fontSize: 14,color: Colors.white),
                                   ),
                                   if(!homeCubit.isLicenseDateValid)
-                                  const Column(
+                                    Column(
                                     children: [
-                                      SizedBox(height: 5,),
-                                      Text("select license from date ",style: TextStyle(color: Colors.red,fontSize: 10),)
+                                      const SizedBox(height: 5,),
+                                      Text(AppLocalizations.of(context)!.selectLicenseFromDate,style: const TextStyle(color: Colors.red,fontSize: 10),)
                                     ],
                                   ),
 
@@ -205,6 +221,22 @@ class _AddCarBottomSheetState extends State<AddCarBottomSheet> {
                             child: TextButton(
                               onPressed: () async {
                                 final DateTime? picked = await showDatePicker(
+                                  builder: (BuildContext context, Widget? child) {
+                                    return Theme(
+                                      data: ThemeData.dark().copyWith(
+                                        colorScheme: const ColorScheme.dark(
+                                          primary: Colors.blue, // Change this to your desired color
+                                          onPrimary: Colors.black, // Change this to your desired text color
+                                        ),
+                                        textTheme: const TextTheme(
+                                          bodyText1: TextStyle(color: Colors.white), // Change this to your desired text color
+                                          bodyText2: TextStyle(color: Colors.white), // Change this to your desired text color
+                                        ),
+                                      ),
+                                      child: child!,
+                                    );
+                                  },
+
                                   context: context,
                                   initialDate: DateTime.now(),
                                   firstDate: DateTime(2000),
@@ -224,15 +256,15 @@ class _AddCarBottomSheetState extends State<AddCarBottomSheet> {
                                 children: [
                                   Text(
                                     homeCubit.licenseToDate == null
-                                        ? 'Select License \nTo Date'
-                                        : 'To:\n ${DateFormat('yyyy-MM-dd').format(homeCubit.licenseToDate!)}',
-                                    style: const TextStyle(fontSize: 14),
+                                        ? AppLocalizations.of(context)!.selectLicenseTo
+                                        : '${AppLocalizations.of(context)!.to}:\n ${DateFormat('yyyy-MM-dd').format(homeCubit.licenseToDate!)}',
+                                    style: const TextStyle(fontSize: 14,color: Colors.white),
                                   ),
                                   if(!homeCubit.isLicenseDateValid)
-                                  const Column(
+                                    Column(
                                     children: [
-                                      SizedBox(height: 5,),
-                                      Text("select license to date ",style: TextStyle(color: Colors.red,fontSize: 10),),
+                                      const SizedBox(height: 5,),
+                                      Text(AppLocalizations.of(context)!.selectLicenseToDate,style: const TextStyle(color: Colors.red,fontSize: 10),),
                                     ],
                                   )
                                 ],
@@ -249,14 +281,14 @@ class _AddCarBottomSheetState extends State<AddCarBottomSheet> {
                         controller: homeCubit.carKilometersController,
                         keyboardType: TextInputType.number,
                         style: const TextStyle(color: Colors.white),
-                        decoration: const InputDecoration(
-                          labelText: "Kilometers",
-                          labelStyle: TextStyle(color: Colors.grey),
-                          border: OutlineInputBorder(),
+                        decoration:   InputDecoration(
+                          labelText: AppLocalizations.of(context)!.kilometers,
+                          labelStyle: const TextStyle(color: Colors.grey),
+                          border: const OutlineInputBorder(),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'Please select a car kilometers';
+                            return AppLocalizations.of(context)!.kilometersErrorMessage;
                           }
                           // You can add more validation logic here if needed
                           return null;
@@ -273,9 +305,9 @@ class _AddCarBottomSheetState extends State<AddCarBottomSheet> {
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: const Text(
-                              "Close",
-                              style: TextStyle(color: Colors.red),
+                            child:   Text(
+                              AppLocalizations.of(context)!.close,
+                              style: const TextStyle(color: Colors.red),
                             ),
                           ),
                           SizedBox(width: 10.h),
@@ -298,7 +330,7 @@ class _AddCarBottomSheetState extends State<AddCarBottomSheet> {
                                 homeCubit.addNewCar(context: context);
                               }
                             },
-                            child: const Text("Submit"),
+                            child:   Text(AppLocalizations.of(context)!.submit),
                           ),
                         ],
                       ),

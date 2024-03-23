@@ -12,7 +12,7 @@ import 'package:drive_doctor/features/home/presentation/screens/update_car_kilom
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'service/add_service.dart';
 
 class CarDetailsScreen extends StatelessWidget {
@@ -89,18 +89,22 @@ class CarDetailsScreen extends StatelessWidget {
                                     height: 5.0.h,
                                   ),
                                   Text(
-                                    "${carModel.carBrandName} Model ${carModel.carModel}",
+                                    "${carModel.carBrandName} ${AppLocalizations.of(context)!.model} ${carModel.carModel}",
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: height * 0.03.h),
+                                        fontSize: 18.h),
+                                  ),
+                                  SizedBox(
+                                    height: 5.0.h,
                                   ),
                                   Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
-                                          "License Expire  "
-                                              "${carModel.licenseToDate.toString()}"
-                                              " (${getDaysBetween(fromDate: carModel.licenseToDate)} Days)",
-                                          textAlign: TextAlign.center,
+                                          "${AppLocalizations.of(context)!.licenseExpiration}  "
+                                              "\n${carModel.licenseToDate.toString()}"
+                                              " (${getDaysBetween(fromDate: carModel.licenseToDate)} ${AppLocalizations.of(context)!.days})",
+                                          textAlign: TextAlign.start,
                                           maxLines: 2,
                                           overflow: TextOverflow.ellipsis,
 
@@ -157,18 +161,20 @@ class CarDetailsScreen extends StatelessWidget {
                                         children: [
                                           Text(
                                             "${carModel.carKilometers.toString()} ",
-                                            style: TextStyle(fontSize: 20.h),
+                                            style: TextStyle(fontSize: 20.h,color: Colors.white),
                                             textAlign: TextAlign.center,
                                           ),
-                                          const Text(
-                                            "KM",
+                                            Text(
+                                              AppLocalizations.of(context)!.km,
                                             textAlign: TextAlign.center,
+                                              style: const TextStyle(color: Colors.white),
                                           ),
                                         ],
                                       ),
                                       IconButton(
                                           onPressed: () {
                                             showModalBottomSheet(
+  isScrollControlled: true,
                                               context: context,
                                               builder: (context) {
                                                 return UpdateKilometersBottomSheet(
@@ -272,7 +278,7 @@ class CarDetailsScreen extends StatelessWidget {
                                     servicePercentage: servicePercentage,
 
                                     kilometersSinceChange:
-                                    "$getDifferenceBetweenKilometers km Over",
+                                    "$getDifferenceBetweenKilometers ${AppLocalizations.of(context)!.kmOver}",
 
                                    );
                               },
@@ -367,15 +373,15 @@ class ServiceTab extends StatelessWidget {
                     color: servicePercentage == "0"?Colors.black : const Color.fromRGBO(112, 112, 112, 1)),
               ),
               if(servicePercentage == "0")
-                const Text(
-                  "Expired",
-                  style:   TextStyle(
+                  Text(
+                  AppLocalizations.of(context)!.expired,
+                  style:   const TextStyle(
                       fontSize: 18,
                       fontWeight:  FontWeight.w800,
                       color:   Colors.red),
                 ),
               Text(
-                  "Details"  ,
+                AppLocalizations.of(context)!.details  ,
                 style:  TextStyle(
                     fontWeight:servicePercentage == "100"? FontWeight.w500 : FontWeight.w500
                     ,color: servicePercentage == "100"?Colors.black : const Color.fromRGBO(112, 112, 112, 1)),

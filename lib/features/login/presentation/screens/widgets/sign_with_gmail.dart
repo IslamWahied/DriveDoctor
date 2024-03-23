@@ -2,6 +2,7 @@ import 'package:drive_doctor/features/login/presentation/cubit/loginCubit.dart';
 import 'package:drive_doctor/features/login/presentation/cubit/loginState.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SignWithGmail extends StatelessWidget {
     final void Function()? onTap;
@@ -33,7 +34,7 @@ class SignWithGmail extends StatelessWidget {
                     height: 30,
                   ),
                   Center(
-                    child: Text('CONNECT WITH GOOGLE',
+                    child: Text( AppLocalizations.of(context)!.logByGoogle,
                         textAlign: TextAlign.center,
                         style: Theme.of(context)
                             .textTheme
